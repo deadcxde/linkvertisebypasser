@@ -3,6 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      1.0
 // @updateURL    https://raw.githubusercontent.com/deadcxde/linkvertisebypasser/main/bypasser.js
+// @downloadURL  https://raw.githubusercontent.com/deadcxde/linkvertisebypasser/main/bypasser.js
 // @description  Bypass Key System
 // @author       Deadcxde
 // @match        *://*/*
