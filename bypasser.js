@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Linkvertise Bypass
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @updateURL    https://raw.githubusercontent.com/deadcxde/linkvertisebypasser/main/bypasser.js
 // @downloadURL  https://raw.githubusercontent.com/deadcxde/linkvertisebypasser/main/bypasser.js
 // @description  Bypass Key System
@@ -18,7 +18,7 @@ function decodeBase64(string) {
 
 function makeid(length) {
     let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567891';
     const charactersLength = characters.length;
     let counter = 0;
     while (counter < length) {
