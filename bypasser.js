@@ -1,7 +1,8 @@
 // ==UserScript==
 // @name         Linkvertise Bypass
 // @namespace    http://tampermonkey.net/
-// @version      2024-08-02
+// @version      1.0
+// @updateURL    https://raw.githubusercontent.com/deadcxde/linkvertisebypasser/main/bypasser.js
 // @description  Bypass Key System
 // @author       Deadcxde
 // @match        *://*/*
