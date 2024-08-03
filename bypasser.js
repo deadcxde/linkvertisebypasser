@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Linkvertise Bypass
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @updateURL    https://raw.githubusercontent.com/deadcxde/linkvertisebypasser/main/bypasser.js
 // @downloadURL  https://raw.githubusercontent.com/deadcxde/linkvertisebypasser/main/bypasser.js
 // @description  Bypass Key System
@@ -37,6 +37,48 @@ function makeidlower(length) {
       counter += 1;
     }
     return result;
+}
+function redirDelta(url) {
+    const button = document.querySelector('button');
+    if (button && !button.disabled && button.innerHTML === "Continue" ) {
+        const Http = new XMLHttpRequest();
+        const baseUrl = "https://api-gateway.platoboost.com/v1/sessions/auth/8/";
+        const parts = url.split("id=");
+        var part = parts[1];
+        console.log(part);
+        if (part && part.includes("&__cf_chl_tk")) {
+            part = part.split("&__cf_chl_tk");
+            part = part[0];
+        }
+        const newUrl=baseUrl + part;
+        Http.open("POST", newUrl);
+        Http.setRequestHeader("Content-Type", "application/json");
+        Http.onreadystatechange = function() {
+            if (Http.readyState == XMLHttpRequest.DONE) {
+                window.location.href = JSON.parse(Http.responseText)["redirect"];
+            }
+        }
+        Http.send(JSON.stringify({"captcha": "", "type": ""}));
+    }
+}
+function acceptKey(url) {
+    const button = document.querySelector('button');
+    if (button && !button.disabled && button.innerHTML === "Continue" ) {
+        const Http = new XMLHttpRequest();
+        const baseUrl = "https://api-gateway.platoboost.com/v1/sessions/auth/8/";
+        const parts = url.split("id=")[1].split("&tk=");
+        var id = parts[0];
+        var tk = parts[1];
+        const newUrl=baseUrl + id + "/" + tk;
+        Http.open("PUT", newUrl);
+        Http.setRequestHeader("Content-Type", "application/json");
+        Http.onreadystatechange = function() {
+            if (Http.readyState == XMLHttpRequest.DONE) {
+                window.location.href = JSON.parse(Http.responseText)["redirect"];
+            }
+        }
+        Http.send(JSON.stringify({"captcha": "", "type": ""}));
+    }
 }
 
 // Функция, которая будет выводить текущую ссылку в консоль и раскодировать вторую часть из base64
@@ -74,6 +116,12 @@ function logAndDecodeURL() {
     if (url.includes("76138/arceus-x-neo-key-system-3")) {
         window.location.href = "https://spdmteam.com/api/keysystem?step=3&advertiser=linkvertise&OS=android";
     }
+    if (url.includes(".com/a/8?id=") && !url.includes("&tk=")) {
+        setInterval(() => redirDelta(url), 1000);
+    }
+    if (url.includes(".com/a/8?id=") && url.includes("&tk=")) {
+        setInterval(() => acceptKey(url), 1000);
+    }
     if (url.includes("r=") && url.includes("dynamic?")) {
         const parts = url.split("r=");
         const encodedPart = parts[1].split("%3D")[0];
@@ -87,16 +135,6 @@ function logAndDecodeURL() {
         window.location.href = decodedPart;
     }
 }
-
-function clickButtonDelta() {
-    const button = document.querySelector('button'); // Замените "your_button_id" на ID вашей кнопки
-    if (button && !button.disabled ) {
-        if (button.innerHTML === "Continue") {
-            button.click();
-        }
-    }
-}
-
 
 // Вызываем функцию при загрузке страницы
 logAndDecodeURL();
