@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Linkvertise Bypass
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.3
 // @updateURL    https://raw.githubusercontent.com/deadcxde/linkvertisebypasser/main/bypasser.js
 // @downloadURL  https://raw.githubusercontent.com/deadcxde/linkvertisebypasser/main/bypasser.js
 // @description  Bypass Key System
@@ -99,11 +99,21 @@ function logAndDecodeURL() {
     if (url.includes("580726/fluxus") && !url.includes("580726/fluxus1")) {
         setTimeout(() => window.location.href = "https://flux.li/android/external/main.php?hash=DEADCXDEooo" + makeid(12) + "&utm_source=linkvertise.com", 10000);
     }
-    // if (url.includes("external/main.php") || url.includes("external/check1.php")) {
-    //     if (document.querySelector("body").innerHTML.includes("Trying to bypass the Fluxus key system will get you banned from using Fluxus")) {
-    //         setTimeout(() => window.location.reload(), 10000);
-    //     }
-    // }
+    if (url.includes("external/main.php")) {
+         if (document.querySelector("body").innerHTML.includes("Trying to bypass the Fluxus key system will get you banned")) {
+             setTimeout(() => window.location.reload(true), 2000);
+         }
+    }
+    if (url.includes("external/check1.php")) {
+         if (document.querySelector("body").innerHTML.includes("Trying to bypass the Fluxus key system will get you banned from using Fluxus")) {
+             setTimeout(() => window.location.href = "https://flux.li/android/external/check1.php?hash=DEADCXDEooo" + makeid(12) + "&utm_source=linkvertise.com", 10000);
+         } else {
+             setTimeout(() => window.location.href = "https://linkvertise.com/580726/fluxus", 2000);
+         }
+    }
+    if (url.includes("start.php?HWID=")) {
+        setTimeout(() => window.location.href = "https://linkvertise.com/580726/fluxus1", 2000);
+    }
     if (url.includes("s?mK6Z") || url.includes("codex-gateway-2") || url.includes("codex-gateway-1")) {
         window.location.href = "https://mobile.codex.lol/?page=tasks";
     }
