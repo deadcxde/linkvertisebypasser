@@ -83,7 +83,25 @@ function acceptKey(url) {
 
 // Функция, которая будет выводить текущую ссылку в консоль и раскодировать вторую часть из base64
 function logAndDecodeURL() {
-    const url = window.location.href;
+    const url = window.location.href;,
+    if (url.includes("1200269/wave-key-1")) {
+        setTimeout(() => window.location.href = "https://key.getwave.gg/freemium-tasks?a", 5000);
+    }
+    if (url.includes("1200269/wave-key-2")) {
+        setTimeout(() => window.location.href = "https://key.getwave.gg/freemium-tasks?c", 5000);
+    }
+    if (url.includes("1200269/wave-key-3")) {
+        setTimeout(() => window.location.href = "https://key.getwave.gg/freemium-tasks?b", 5000);
+    }
+    if (url.includes("link.com/s?a71a5892")) {
+        setTimeout(() => window.location.href = "https://key.getwave.gg/freemium-tasks?d", 5000);
+    }
+    if (url.includes("lootdest.com/s?da8a5a9c")) {
+        setTimeout(() => window.location.href = "https://key.getwave.gg/freemium-tasks?e", 5000);
+    }
+    if (url.includes("lootdest.com/s?15e1e695")) {
+        setTimeout(() => window.location.href = "https://key.getwave.gg/freemium-tasks?f", 5000);
+    }
     if (url.includes("480518/hohohubcheckpoint1")) {
         setTimeout(() => window.location.href = "https://hohohubv-ac90f67762c4.herokuapp.com/api/step?step=2", 10000);
     }
