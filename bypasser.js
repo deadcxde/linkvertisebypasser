@@ -83,7 +83,7 @@ function acceptKey(url) {
 
 // Функция, которая будет выводить текущую ссылку в консоль и раскодировать вторую часть из base64
 function logAndDecodeURL() {
-    const url = window.location.href;,
+    const url = window.location.href;
     if (url.includes("1200269/wave-key-1")) {
         setTimeout(() => window.location.href = "https://key.getwave.gg/freemium-tasks?a", 5000);
     }
